@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phpne_num',
+        'phone_num',
         'role',
     ];
 
