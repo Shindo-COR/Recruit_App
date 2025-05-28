@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+           Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone_num');
             $table->string('password');
+            $table->integer('role')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -46,3 +48,12 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
     }
 };
+//  Schema::create('users', function (Blueprint $table) {
+//             $table->id();
+//             $table->string('name');
+//             $table->string('email')->unique();
+//             $table->string('password');
+//             $table->rememberToken();
+//             $table->timestamps();
+//         });
+
