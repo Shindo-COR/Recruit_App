@@ -17,11 +17,15 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
+    protected $fillable = [//変更箇所
         'name',
         'email',
         'password',
+<<<<<<< HEAD
         'phone_num',
+=======
+        'phpne_num',
+>>>>>>> b1c96ff8d916d8cc07de69bf57739c42ca99e33e
         'role',
     ];
 
