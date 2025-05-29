@@ -15,10 +15,19 @@ class CompanyController extends Controller
 {
     //企業一覧の表示
     public function index(){
-        $companies = Company::all();
+        $companies = Company::where('is_recruiting', 1)
+                        ->get();
 
         return view('admin.companies.index', compact('companies'));
     }
+
+    public function destroyIndex(){
+        $companies = Company::where('is_recruiting', 0)
+                        ->get();
+
+        return view('admin.companies.destroyIndex', compact('companies'));
+    }
+
 
     public function create(){
         return view('admin.companies.create');

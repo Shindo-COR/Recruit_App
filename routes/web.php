@@ -32,17 +32,18 @@ Route::get('/admin/companies', [CompanyController::class, 'index']);
 Route::get('/admin/companies/create', [CompanyController::class, 'create']);
 //新規企業をデータベースに登録
 Route::post('/admin/companies/store', [CompanyController::class, 'store']);
+//削除済み企業一覧
+Route::get('/admin/companies/destroyed', [CompanyController::class, 'destroyIndex']);
 //企業詳細ページに遷移
 Route::get('/admin/companies/{company}', [CompanyController::class, 'show']) -> name('admin.companies.show');
 //企業が出している求人一覧
-Route::get('/admin/companies/{company}/recruits', [CompanyController::class, 'RecruitsIndex']);
+Route::get('/admin/companies/{company}/recruits', [CompanyController::class, 'recruitsIndex']);
 //求人詳細ページに遷移
-Route::get('/admin/companies/{company}/recruits/{recruit}', [CompanyController::class, 'RecruitsShow']);
+Route::get('/admin/companies/{company}/recruits/{recruit}', [CompanyController::class, 'recruitsShow']);
 //企業編集ページに遷移
 Route::get('/admin/companies/{company}/edit', [CompanyController::class, 'edit']);
 //企業情報を更新
 Route::post('/admin/companies/{company}/update', [CompanyController::class, 'update']);
 //企業情報を削除
 Route::post('/admin/companies/{company}/destroy', [CompanyController::class, 'destroy']);
-//削除済み企業一覧
-Route::get('/admin/companies/destroyed', [CompanyController::class, 'DestroyIndex']);
+

@@ -1,7 +1,4 @@
-<h1>登録中企業一覧</h1>
-
-<p><a href='/admin/companies/create'>新規企業登録</a></p>
-
+<h1>削除済み企業一覧</h1>
 
 <table border=1>
     <tr>
@@ -15,4 +12,4 @@
     @endforeach
 </table>
 
-<p><a href='/admin/companies/destroyed'>削除済み企業一覧</a></p>
+<a href='/admin/companies'>戻る</a>
