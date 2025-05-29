@@ -38,9 +38,11 @@ Route::get('/admin/companies/{company}', [CompanyController::class, 'show']) -> 
 Route::get('/admin/companies/{company}/recruits', [CompanyController::class, 'RecruitsIndex']);
 //求人詳細ページに遷移
 Route::get('/admin/companies/{company}/recruits/{recruit}', [CompanyController::class, 'RecruitsShow']);
-//求人編集ページに遷移
+//企業編集ページに遷移
 Route::get('/admin/companies/{company}/edit', [CompanyController::class, 'edit']);
-//求人情報を更新
+//企業情報を更新
 Route::post('/admin/companies/{company}/update', [CompanyController::class, 'update']);
-//求人情報を削除
+//企業情報を削除
 Route::post('/admin/companies/{company}/destroy', [CompanyController::class, 'destroy']);
+//削除済み企業一覧
+Route::get('/admin/companies/destroyed', [CompanyController::class, 'DestroyIndex']);

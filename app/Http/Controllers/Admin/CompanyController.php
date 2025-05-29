@@ -70,8 +70,7 @@ class CompanyController extends Controller
 
     public function update(Request $request, string $company){
         //companiesテーブルをupdate
-        $id = $company;
-        $company_db = Company::find($id);
+        $company_db = Company::find($company);
         $company_name = $company_db->name;
         // $user = User::find('name', $company_name)
         //                 ->get();
@@ -104,7 +103,14 @@ class CompanyController extends Controller
 
         $user->save();
 
-
         return redirect()->route('admin.companies.show', ['company' => $company]);
+    }
+
+    public function destroy(string $company){
+        $company_db = Company::find($company);
+        $company_db->is_recruiting = 0;
+
+        $company_db->save();
+        return redirect('/admin/companies');
     }
 }

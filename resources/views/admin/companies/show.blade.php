@@ -1,10 +1,12 @@
 <h1>企業情報</h1>
 
-
 <div>
     <a href='/admin/companies'>戻る</a>
     <a href='/admin/companies/{{$company->id}}/edit'>編集</a>
-    <a href='/admin/companies/{{$company->id}}/destroy'>削除</a>
+    <form action='/admin/companies/{{$company->id}}/destroy' method='post'>
+        @csrf
+        <input type='submit' name='submit' value='削除'>
+    </form>
 </div>
 
 <table border=1>
