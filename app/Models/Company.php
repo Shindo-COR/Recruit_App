@@ -10,7 +10,7 @@ class Company extends Model
 
     //PrefectureCategoryとのリレーション
     public function prefecture(){
-        return $this->belongsTo(Prefecture::class);
+        return $this->belongsTo(PrefectureCategory::class);
     }
 
     //usersモデルと1対1のリレーション
