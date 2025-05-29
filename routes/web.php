@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\CompanyController;
 
-
 Route::get('/', function () {
     return view('welcome');
 });
