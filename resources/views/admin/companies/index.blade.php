@@ -9,7 +9,7 @@
         <th>本拠地</th>
     @foreach($companies as $company)
         <tr>
-            <td>{{$company->name}}</td>
+            <td><a href='/admin/companies/{company}'>{{$company->name}}</a></td>
             <td>{{$company->prefecture?->name}}</td>
         </tr>
     @endforeach
