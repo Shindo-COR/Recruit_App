@@ -9,10 +9,7 @@ class CompanyController extends Controller
 {
     //企業一覧の表示
     public function index(){
-        $companies = Company::where('is_recruiting', 1)
-                        ->select('id', 'name', 'prefecture_id')
-                        ->get();
-
+        $companies = Company::all();
         return view('admin.companies.index', compact('companies'));
     }
 
