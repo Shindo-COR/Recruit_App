@@ -52,7 +52,7 @@ class User extends Authenticatable
     protected $table = 'users';
 
     //companiesモデルと1対1のリレーション
-    public function Companies(){
+    public function companies(){
         return $this->hasOne(Company::class);
     }
 }

@@ -55,4 +55,9 @@ class CompanyController extends Controller
 
         return redirect('/admin/companies');
     }
+
+    public function show(string $company){
+        $company = Company::find($company);
+        return view('admin.companies.show', compact('company'));
+    }
 }
