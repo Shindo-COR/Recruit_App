@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -21,11 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-<<<<<<< HEAD
         'phone_num',
-=======
-        'phpne_num',
->>>>>>> b1c96ff8d916d8cc07de69bf57739c42ca99e33e
         'role',
     ];
 
@@ -50,5 +47,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected $table = 'users';
+
+    //companiesモデルと1対1のリレーション
+    public function Companies(){
+        return $this->hasOne(Company::class);
     }
 }

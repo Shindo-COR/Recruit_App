@@ -12,4 +12,9 @@ class Company extends Model
     public function prefecture(){
         return $this->belongsTo(Prefecture::class);
     }
+
+    //usersモデルと1対1のリレーション
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
 }
