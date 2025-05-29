@@ -21,11 +21,11 @@
         </tr>
         <tr>
             <td>本拠地</td>
-            <td><input type='text' name='password' value={{old('prefecture')}}></td>
+            <td><input type='text' name='prefecture' value={{old('prefecture')}}></td>
         </tr>
         <tr>
             <td>企業詳細</td>
-            <td><textarea name='information' value={{old('information')}} rows='5' cols='30'></textarea><td>
+            <td><textarea name='information' rows='5' cols='30'></textarea><td>
         </tr>
         </table>
     <input type='submit' name='submit' value='登録'>
