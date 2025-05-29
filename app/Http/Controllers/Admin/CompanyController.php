@@ -61,4 +61,10 @@ class CompanyController extends Controller
         // dd($company->user->email);
         return view('admin.companies.show', compact('company'));
     }
+
+    public function edit(string $company){
+        $company = Company::find($company);
+        // dd($company->user->email);
+        return view('admin.companies.edit', compact('company'));
+    }
 }
