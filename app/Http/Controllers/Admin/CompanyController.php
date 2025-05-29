@@ -52,5 +52,7 @@ class CompanyController extends Controller
         $company->is_recruiting = 1;
 
         $company->save();
+
+        return redirect('/admin/companies');
     }
 }
