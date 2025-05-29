@@ -33,7 +33,7 @@ Route::get('/admin/companies/create', [CompanyController::class, 'create']);
 //新規企業をデータベースに登録
 Route::post('/admin/companies/store', [CompanyController::class, 'store']);
 //企業詳細ページに遷移
-Route::get('/admin/companies/{company}', [CompanyController::class, 'show']);
+Route::get('/admin/companies/{company}', [CompanyController::class, 'show']) -> name('admin.companies.show');
 //企業が出している求人一覧
 Route::get('/admin/companies/{company}/recruits', [CompanyController::class, 'RecruitsIndex']);
 //求人詳細ページに遷移

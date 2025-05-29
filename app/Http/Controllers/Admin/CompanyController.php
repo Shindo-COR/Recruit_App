@@ -67,4 +67,44 @@ class CompanyController extends Controller
         // dd($company->user->email);
         return view('admin.companies.edit', compact('company'));
     }
+
+    public function update(Request $request, string $company){
+        //companiesテーブルをupdate
+        $id = $company;
+        $company_db = Company::find($id);
+        $company_name = $company_db->name;
+        // $user = User::find('name', $company_name)
+        //                 ->get();
+
+        $user = User::find($company_db->user_id);
+        // dd($company_db, $company_name, $user);
+
+        $prefecture_id = PrefectureCategory::where('name', $request->prefecture)
+                                ->select('id')
+                                ->first();
+
+        $company_db->id = $id;
+        $company_db->name = $request->name;
+        $company_db->user_id = $company_db->user_id;
+        $company_db->information = $request->information;
+        $company_db->filename = 'file place';
+        $company_db->prefecture_id = $prefecture_id->id;
+        $company_db->is_recruiting = 1;
+
+        $company_db->save();
+
+
+        //userテーブルをupdate
+        // $user->id = $user->id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone_num = $request->phone_num;
+        // $user->password = $user->password;
+        // $user->role = $user->role;
+
+        $user->save();
+
+
+        return redirect()->route('admin.companies.show', ['company' => $company]);
+    }
 }
