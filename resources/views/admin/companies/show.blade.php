@@ -18,11 +18,11 @@
     </tr>
     <tr>
         <td>メールアドレス</td>
-        <td>{{$company->users?->email}}</td>
+        <td>{{$company->user?->email}}</td>
     </tr>
     <tr>
         <td>電話番号</td>
-        <td>{{$company->users?->phone_num}}</td>
+        <td>{{$company->user?->phone_num}}</td>
     </tr>
     <tr>
         <td>本拠地</td>

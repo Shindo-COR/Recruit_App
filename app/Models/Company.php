@@ -14,7 +14,7 @@ class Company extends Model
     }
 
     //usersモデルと1対1のリレーション
-    public function users(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }
