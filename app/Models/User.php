@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+// use Illuminate\Database\Eloquent\SoftDeletes;//論理削除
 class User extends Authenticatable
 {
+    //    use SoftDeletes;
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
@@ -25,6 +27,10 @@ class User extends Authenticatable
         'role',
     ];
 
+    public function applies()
+    {//リレーション
+        return $this->hasMany(Apply::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
