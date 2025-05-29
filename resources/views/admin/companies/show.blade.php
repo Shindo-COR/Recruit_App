@@ -7,7 +7,7 @@
     <a href='/admin/companies/{{$company->id}}/destroy'>削除</a>
 </div>
 
-<table>
+<table border=1>
     <tr>
         <td>id</td>
         <td>{{$company->user_id}}</td>
