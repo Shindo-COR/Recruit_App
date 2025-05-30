@@ -9,6 +9,8 @@ use App\Models\PrefectureCategory;
 use App\Models\Recruit;
 use App\Models\User;
 
+use DateTime;
+
 use App\Http\Controllers\Controller;
 
 class CompanyController extends Controller
@@ -132,24 +134,27 @@ class CompanyController extends Controller
                                 ->select('id')
                                 ->first();
 
-        $company_db->id = $id;
+        //編集時間を更新するため現在時刻を取得
+        $date = new Datetime();
+        $date->format('Y-m-d H:i:s');
+
+        $company_db->id = $company;
         $company_db->name = $request->name;
         $company_db->user_id = $company_db->user_id;
         $company_db->information = $request->information;
         $company_db->filename = 'file place';
         $company_db->prefecture_id = $prefecture_id->id;
         $company_db->is_recruiting = 1;
+        $company_db->updated_at = $date;
 
         $company_db->save();
 
 
         //userテーブルをupdate
-        // $user->id = $user->id;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone_num = $request->phone_num;
-        // $user->password = $user->password;
-        // $user->role = $user->role;
+        $user->updated_at = $date;
 
         $user->save();
 

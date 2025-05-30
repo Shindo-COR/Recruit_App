@@ -19,12 +19,14 @@
 
 <table border=1>
     <tr>
+        <th>id</id>
         <th>企業名</th>
         <th>本拠地</th>
         <th>登録日時</th>
         <th>最終更新日時</th>
     @foreach($companies as $company)
         <tr>
+            <td>{{$company->id}}</td>
             <td><a href='/admin/companies/{{$company->id}}'>{{$company->name}}</a></td>
             <td>{{$company->prefecture?->name}}</td>
             <td>{{$company->created_at}}</td>
