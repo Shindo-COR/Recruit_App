@@ -38,6 +38,7 @@ class EntryController extends Controller
 
     public function index()
     {
+        // dd(Auth::check()); // true ならログイン済み、false なら未ログイン
         $user = Auth::user();
 
         // ユーザーが応募した求人一覧を取得

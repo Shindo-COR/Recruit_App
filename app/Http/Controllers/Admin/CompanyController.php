@@ -141,13 +141,15 @@ class CompanyController extends Controller
                                 ->select('id')
                                 ->first();
 
+
         //編集時間を更新するため現在時刻を取得
         $date = new Datetime();
         $date->format('Y-m-d H:i:s');
 
         $company_db->id = $company;
+
         $company_db->name = $request->name;
-        $company_db->user_id = $company_db->user_id;
+        // $company_db->user_id = $company_db->user_id;
         $company_db->information = $request->information;
         $company_db->filename = 'file place';
         $company_db->prefecture_id = $prefecture_id->id;

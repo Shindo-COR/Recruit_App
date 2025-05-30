@@ -1,7 +1,7 @@
 @extends('user.recruits.user')
 
 @section('content')
-<h2>{{ $recruit->name }}</h2>
+{{-- <h2>{{ $recruit->name }}</h2> --}}
 
 <p>{{ $recruit->information }}</p>
 
