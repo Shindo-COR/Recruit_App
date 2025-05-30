@@ -18,7 +18,14 @@ class CompanyController extends Controller
     //企業一覧の表示
     public function index(Request $request){
         //ソートが入力された場合のみ処理
-        if($request->has('sort')){
+        if($request->has('requirement')){
+            $keyword = $request->requirement;
+            $companies = Company::with('prefecture')
+                            ->where('name', 'LIKE', "%{$keyword}%")
+                            ->orWhereHas('prefecture', function($query) use ($keyword){
+                                $query->where('name', 'LIKE', "%{$keyword}%");
+                            })->get();
+        }else if($request->has('sort')){
             if($request->sort == 'addition_old'){
                 //登録日が古い順に表示
                 $companies = Company::where('is_recruiting', 1)
@@ -50,7 +57,7 @@ class CompanyController extends Controller
                 //都道府県を五十音に表示　ん→あ
                 $companies = Company::join('prefecture_categories', 'companies.prefecture_id', '=', 'prefecture_categories.id')
                                 ->where('is_recruiting', 1)
-                                ->select('companies.id','companies.name', 'companies.prefecture_id', 'companies.created_at', 'companies.update_at')
+                                ->select('companies.id','companies.name', 'companies.prefecture_id', 'companies.created_at', 'companies.updated_at')
                                 ->orderBy('sort_order', 'desc')
                                 ->get();
             }else{

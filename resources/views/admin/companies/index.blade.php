@@ -1,12 +1,20 @@
 <h1>登録中企業一覧</h1>
 
 <p><a href='/admin/companies/create'>新規企業登録</a></p>
+{{-- 検索機能を追加 --}}
+<form action='/admin/companies'>
+    @csrf
+    <label for='requirement'>企業検索:</label>
+    <input type='text' name='requirement'>
+    <input type='submit' name='submit' value='検索'>
+</form>
 
+{{-- ソート機能を追加 --}}
 <form action='/admin/companies' method='get'>
     @csrf
-    <p>企業一覧の表示形式を変更できます</p>
+    <label for='sort'>企業一覧の表示形式を変更できます:</label>
     <select name='sort'>
-        <option value=''>表示形式を選択してください</option>
+        <option value=''>表示形式一覧</option>
         <option value='addition_old'>登録日時昇順</option>
         <option value='addition_new'>登録日時降順</option>
         <option value='update_old'>最終更新日時昇順</option>
@@ -16,6 +24,8 @@
     </select>
     <input type='submit' name='submit' value='表示形式を変更'>
 </form>
+
+<form action='/admin/companies'>
 
 <table border=1>
     <tr>
@@ -35,4 +45,5 @@
     @endforeach
 </table>
 
+<p><a href='/admin/companies'>登録中企業全件表示</a></p>
 <p><a href='/admin/companies/destroyed'>削除済み企業一覧</a></p>

@@ -61,6 +61,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::post('/admin/companies/{company}/update', [CompanyController::class, 'update']);
     //企業情報を削除
     Route::post('/admin/companies/{company}/destroy', [CompanyController::class, 'destroy']);
+
 });
 
 
