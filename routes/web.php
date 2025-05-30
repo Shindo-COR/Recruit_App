@@ -75,7 +75,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 // ルートグループに共通のURLプレフィックスを付けるprefix('user')
 Route::prefix('user')->middleware(['auth', 'role:0'])->group(function () {
     // 追加
-Route::get('/dashboard', [RecruitController::class, 'index'])->middleware(['auth'])->name('dashboardからのindex');
+    Route::get('/dashboard', [RecruitController::class, 'index'])->middleware(['auth'])->name('dashboardからのindex');
     // Route::get('/user/home', function () {
     // return view('user.home');
 
