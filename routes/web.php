@@ -63,9 +63,11 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     //企業情報を削除
     Route::post('/admin/companies/{company}/destroy', [CompanyController::class, 'destroy']);
 
+
     // 追加
 
     Route::get('/dashboard', [CompanyController::class, 'index'])->name('dashboardからのindex');
+
 });
 
 
@@ -78,7 +80,9 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 // ユーザーがログインした場合のルーティング
 // ルートグループに共通のURLプレフィックスを付けるprefix('user')
+
 Route::middleware(['auth', 'role:0'])->group(function () {
+
 
     // 求人一覧・詳細
     Route::get('/user/recruits', [RecruitController::class, 'index'])->name('user.recruits.index');
