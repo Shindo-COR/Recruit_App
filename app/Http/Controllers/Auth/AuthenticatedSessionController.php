@@ -24,11 +24,30 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // 入力バリデーション
+        // ユーザー作成（User::create）
+        // 自動ログイン（Auth::login）
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // return redirect()->intended(route('dashboard', absolute: false));
+
+
+        //  権限によってリダイレクト先を変更
+
+        $user = Auth::user();
+        // dd(Auth::check()); // true ならログイン済み、false なら未ログイン
+        // dd($user);
+        if ($user->role === 1) { // オーナー
+            return redirect()->intended('/company/recruits');
+        } elseif ($user->role === 0) { // 通常ユーザー
+            return redirect()->intended('/user/recruits');
+        }elseif ($user->role === 2) { // admin
+            return redirect()->intended('/admin/companies');
+        }else {
+            return redirect()->intended('/飛んできた'); // 保険用
+        }
     }
 
     /**
