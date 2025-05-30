@@ -20,6 +20,7 @@ return new class extends Migration {
                 $table->boolean('is_recruiting'); // 募集中かどうか
                 $table->integer('sort_order'); // 並び順
                 // $table->foreignId('job_category');
+
                 $table->foreignId('job_category')->constrained('job_categories');//テーブル名が job_categories を明示
                 $table->timestamps(); // created_at, updated_at
                 // 外部キー制約

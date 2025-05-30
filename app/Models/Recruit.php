@@ -20,5 +20,4 @@ class Recruit extends Model
     {//リレーション
         return $this->hasMany(Apply::class);
     }
-
 }

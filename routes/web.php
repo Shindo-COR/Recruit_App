@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
 use App\Http\Controllers\User\RecruitController;
 use App\Http\Controllers\User\EntryController;
 use App\Http\Controllers\User\FavoriteController;
@@ -11,6 +12,9 @@ use App\Http\Controllers\User\QuitController;
 use App\Http\Middleware\RoleMiddleware;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+use App\Http\Controllers\Admin\CompanyController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,6 +22,7 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
@@ -25,18 +30,37 @@ Route::get('/', function () {
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
             ->name('login');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 //管理者がログインした場合のルーティング
 Route::middleware(['auth', 'role:2'])->group(function () {
-
-    Route::get('/admin/companies', function () {
-        return view('/admin/companies');///company/recruits
-    });
+    //管理者権限を持ったユーザのページ作成
+    //登録している企業一覧
+    Route::get('/admin/companies', [CompanyController::class, 'index']);
+    //企業登録ページに遷移
+    Route::get('/admin/companies/create', [CompanyController::class, 'create']);
+    //新規企業をデータベースに登録
+    Route::post('/admin/companies/store', [CompanyController::class, 'store']);
+    //削除済み企業一覧
+    Route::get('/admin/companies/destroyed', [CompanyController::class, 'destroyIndex']);
+    //企業詳細ページに遷移
+    Route::get('/admin/companies/{company}', [CompanyController::class, 'show']) -> name('admin.companies.show');
+    //企業が出している求人一覧
+    Route::get('/admin/companies/{company}/recruits', [CompanyController::class, 'recruitsIndex']);
+    //求人詳細ページに遷移
+    Route::get('/admin/companies/{company}/recruits/{recruit}', [CompanyController::class, 'recruitsShow']);
+    //企業編集ページに遷移
+    Route::get('/admin/companies/{company}/edit', [CompanyController::class, 'edit']);
+    //企業情報を更新
+    Route::post('/admin/companies/{company}/update', [CompanyController::class, 'update']);
+    //企業情報を削除
+    Route::post('/admin/companies/{company}/destroy', [CompanyController::class, 'destroy']);
 });
 
 

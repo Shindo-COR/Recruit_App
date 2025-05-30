@@ -1,3 +1,4 @@
+
 @extends('user.recruits.user')
 
 @section('content')
@@ -21,3 +22,4 @@
 
 {{ $recruits->links() }}
 @endsection
+

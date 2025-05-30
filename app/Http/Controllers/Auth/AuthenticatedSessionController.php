@@ -33,6 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         // return redirect()->intended(route('dashboard', absolute: false));
 
+
         //  権限によってリダイレクト先を変更
         $user = Auth::user();
         if ($user->role === 1) { // オーナー
