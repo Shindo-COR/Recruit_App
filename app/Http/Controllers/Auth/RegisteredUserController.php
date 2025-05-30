@@ -52,6 +52,6 @@ class RegisteredUserController extends Controller
         // return redirect()->intended(RouteServiceProvider::HOME);
         // return redirect(route('dashboard', absolute: false));//登録後の遷移先
         //  return redirect(route('login',absolute: false));
-          return redirect()->route('login');
+          return redirect()->route('login');//登録後→ログイン画へ
     }
 }

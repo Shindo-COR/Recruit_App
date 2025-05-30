@@ -3,7 +3,7 @@
 @section('content')
     <h2>応募済み求人一覧</h2>
 
-    @if($applies->isEmpty())
+    @if($applies->isnull())
         <p>応募した求人はありません。</p>
     @else
         <ul>

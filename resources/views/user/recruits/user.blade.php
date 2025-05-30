@@ -1,9 +1,11 @@
-<!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>求人サイト（ユーザー）</title>
+    <p>ログイン中ユーザー: {{ Auth::check() ? Auth::user()->name : '未ログイン' }}</p>
+
 </head>
 
 <body>

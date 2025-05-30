@@ -91,9 +91,9 @@ class CompanyController extends Controller
                                 ->select('id')
                                 ->first();
 
-        $company_db->id = $id;
+        // $company_db->id = $id;//$company_db は Company::find($company) で取得したモデルであり、IDも既にセットされています
         $company_db->name = $request->name;
-        $company_db->user_id = $company_db->user_id;
+        // $company_db->user_id = $company_db->user_id;
         $company_db->information = $request->information;
         $company_db->filename = 'file place';
         $company_db->prefecture_id = $prefecture_id->id;

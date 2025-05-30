@@ -21,7 +21,8 @@ class FavoriteController extends Controller
             ->exists();
 
         if ($exists) {
-            return back()->with('message', 'すでにお気に入り登録済みです');
+            return redirect()->route('user.recruits.index')->with('success', 'お気に入りに登録しました');
+
         }
 
         Favorite::create([
@@ -29,7 +30,8 @@ class FavoriteController extends Controller
             'recruit_id' => $recruit->id,
         ]);
 
-        return back()->with('success', 'お気に入りに登録しました');
+      return redirect()->route('user.recruits.index')->with('success', 'お気に入りに登録しました');
+
     }
 
 
@@ -42,8 +44,24 @@ class FavoriteController extends Controller
         $favorites = Favorite::with('recruit')
             ->where('user_id', $user->id)
             ->latest()
-            ->get();
+            ->first();
 
         return view('user.recruits.favorite.index', compact('favorites'));
+    }
+
+    public function destroy($recruitId)
+    {
+        $user = Auth::user();
+
+        $favorite = Favorite::where('user_id', $user->id)
+            ->where('recruit_id', $recruitId)
+            ->first();
+
+        if ($favorite) {
+            $favorite->delete();
+            return back()->with('success', 'お気に入りを解除しました');
+        }
+
+        return redirect('user.recruits.favorite.index')->with('error', 'お気に入り登録が見つかりませんでした');
     }
 }

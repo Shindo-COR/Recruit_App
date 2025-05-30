@@ -35,7 +35,10 @@ class AuthenticatedSessionController extends Controller
 
 
         //  権限によってリダイレクト先を変更
+
         $user = Auth::user();
+        // dd(Auth::check()); // true ならログイン済み、false なら未ログイン
+        // dd($user);
         if ($user->role === 1) { // オーナー
             return redirect()->intended('/company/recruits');
         } elseif ($user->role === 0) { // 通常ユーザー
@@ -43,7 +46,7 @@ class AuthenticatedSessionController extends Controller
         }elseif ($user->role === 2) { // admin
             return redirect()->intended('/admin/companies');
         }else {
-            return redirect()->intended('/dashboard'); // 保険用
+            return redirect()->intended('/飛んできた'); // 保険用
         }
     }
 
