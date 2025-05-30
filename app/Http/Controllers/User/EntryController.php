@@ -1,7 +1,9 @@
 <?php
-
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
+// namespace App\Http\Controllers;
+// Userディレクトリにあるのに namespace が App\Http\Controllers; のままだと、
+// App\Http\Controllers\RecruitController として認識されてしまいます。
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Apply;

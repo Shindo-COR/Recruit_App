@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone_num' => $request->phone, // 追加
+            'phone_num' => $request->phone_num, // 追加
             'password' => Hash::make($request->password),
             // 'role' => 'user',
             'role' => (int)$request->role,
@@ -46,10 +46,12 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);//自動ログイン
 
 
         // return redirect()->intended(RouteServiceProvider::HOME);
-        return redirect(route('dashboard', absolute: false));
+        // return redirect(route('dashboard', absolute: false));//登録後の遷移先
+        //  return redirect(route('login',absolute: false));
+          return redirect()->route('login');
     }
 }

@@ -38,8 +38,10 @@ class AuthenticatedSessionController extends Controller
         if ($user->role === 1) { // オーナー
             return redirect()->intended('/company/recruits');
         } elseif ($user->role === 0) { // 通常ユーザー
-            return redirect()->intended('/recruits');
-        } else {
+            return redirect()->intended('/user/recruits');
+        }elseif ($user->role === 2) { // admin
+            return redirect()->intended('/admin/companies');
+        }else {
             return redirect()->intended('/dashboard'); // 保険用
         }
     }

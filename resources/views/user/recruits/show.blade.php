@@ -1,4 +1,4 @@
-@extends('recruits.user')
+@extends('user.recruits.user')
 
 @section('content')
 <h2>{{ $recruit->name }}</h2>

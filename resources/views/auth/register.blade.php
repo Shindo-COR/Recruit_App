@@ -28,9 +28,9 @@
         <!-- Phone Number 変更点-->
         <div class="mt-4">
             <x-input-label for="phone" :value="__('Phone Number')" />
-            <x-text-input id="phone_num" class="block mt-1 w-full" type="text" name="phone_num" :value="old('phone')"
+            <x-text-input id="phone_num" class="block mt-1 w-full" type="text" name="phone_num" :value="old('phone_num')"
                 required autocomplete="phone_number" />
-            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+            <x-input-error :messages="$errors->get('phone_num')" class="mt-2" />
         </div>
 
         <!-- Password -->
